@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnri2gdmg878w"]
+
+[ext_resource type="Texture2D" uid="uid://esc1ep35hgb2" path="res://icon.svg" id="1_8lhm6"]
+[ext_resource type="Script" path="res://scripts/gameplay/save/save_point.gd" id="1_gv0sa"]
+[ext_resource type="PackedScene" uid="uid://bmqoaf40cddce" path="res://scenes/actors/grounded/player/player.tscn" id="2_5qw78"]
+[ext_resource type="PackedScene" uid="uid://tmwqa2gkqll6" path="res://scenes/gameplay/interactive/interact_area.tscn" id="4_28bx0"]
+
+[node name="save_point" type="Node2D" groups=["save_points"]]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_gv0sa")
+player_prefab = ExtResource("2_5qw78")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(0.5, 1.5)
+texture = ExtResource("1_8lhm6")
+
+[node name="interact_area" parent="." instance=ExtResource("4_28bx0")]
+position = Vector2(0, 72)
+
+[connection signal="interact" from="interact_area" to="." method="_on_interact_area_interact"]

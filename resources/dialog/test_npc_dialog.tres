@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Dialog" load_steps=7 format=3 uid="uid://dcgdvnqsmo5rm"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialog_manager/dialog.gd" id="1_5hqos"]
+[ext_resource type="Script" path="res://scripts/ui/dialog_manager/dialog_snapshot.gd" id="1_i50pp"]
+[ext_resource type="Texture2D" uid="uid://cdo4sauy8fbfn" path="res://assets/art/ui/dialog/test/happy.png" id="1_nvk3e"]
+[ext_resource type="Texture2D" uid="uid://begjka23siid0" path="res://assets/art/ui/dialog/test/mad.png" id="3_1xn6j"]
+
+[sub_resource type="Resource" id="Resource_l1i4q"]
+script = ExtResource("1_i50pp")
+dialog_line = "Hello, I'm an NPC."
+avatar = ExtResource("1_nvk3e")
+
+[sub_resource type="Resource" id="Resource_cvgnj"]
+script = ExtResource("1_i50pp")
+dialog_line = "Here's a really long, contrived line of dialogue intended to take up a large amount of space in the dialog text box."
+avatar = ExtResource("3_1xn6j")
+
+[resource]
+script = ExtResource("1_5hqos")
+pages = Array[ExtResource("1_i50pp")]([SubResource("Resource_l1i4q"), SubResource("Resource_cvgnj")])

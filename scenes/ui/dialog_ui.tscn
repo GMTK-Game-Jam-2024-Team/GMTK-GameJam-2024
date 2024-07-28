@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://d255w6bca6ikd"]
+
+[ext_resource type="Script" path="res://scripts/ui/dialog_manager/dialog_ui.gd" id="1_jmlwk"]
+[ext_resource type="Texture2D" uid="uid://tdv3qm0gfmrg" path="res://assets/art/ui/dialog/dialog_rect.png" id="2_y3dem"]
+[ext_resource type="Texture2D" uid="uid://esc1ep35hgb2" path="res://icon.svg" id="3_ot7qv"]
+
+[node name="dialog_ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jmlwk")
+
+[node name="margin_container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.75
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="panel" type="Panel" parent="margin_container"]
+layout_mode = 2
+
+[node name="panel_texture" type="NinePatchRect" parent="margin_container/panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_y3dem")
+patch_margin_left = 11
+patch_margin_top = 19
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="margin_container" type="MarginContainer" parent="margin_container/panel/panel_texture"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 19
+theme_override_constants/margin_top = 27
+theme_override_constants/margin_right = 19
+theme_override_constants/margin_bottom = 19
+
+[node name="dialog_elements" type="HBoxContainer" parent="margin_container/panel/panel_texture/margin_container"]
+layout_mode = 2
+
+[node name="avatar" type="TextureRect" parent="margin_container/panel/panel_texture/margin_container/dialog_elements"]
+layout_mode = 2
+texture = ExtResource("3_ot7qv")
+expand_mode = 2
+
+[node name="label_container" type="Control" parent="margin_container/panel/panel_texture/margin_container/dialog_elements"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="dialog_label" type="Label" parent="margin_container/panel/panel_texture/margin_container/dialog_elements/label_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+autowrap_mode = 3
+
+[node name="print_timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[connection signal="timeout" from="print_timer" to="." method="_on_print_timer_timeout"]
