@@ -1,8 +1,9 @@
 name: Export and Publish
 env:
-  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+  BUTLER_CREDENTIALS: ${{ secrets.BUTLER_API_KEY }}
   ITCH_GAME: ${{ secrets.ITCH_GAME }}
   ITCH_USER: ${{ secrets.ITCH_USER }}
+  PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 on:
   push:
     branches: [main]
@@ -14,6 +15,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          token: ${{ env.PAT }}
       - name: Export
         id: export
         uses: firebelley/godot-export@v5.2.1
@@ -92,7 +96,7 @@ jobs:
       - name: Deploy Windows build
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
-          BUTLER_CREDENTIALS: ${{ env.BUTLER_API_KEY }}
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
           CHANNEL: windows
           ITCH_GAME: ${{ env.ITCH_GAME }}
           ITCH_USER: ${{ env.ITCH_USER }}
@@ -100,7 +104,7 @@ jobs:
       - name: Deploy Linux build
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
-          BUTLER_CREDENTIALS: ${{ env.BUTLER_API_KEY }}
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
           CHANNEL: linux
           ITCH_GAME: ${{ env.ITCH_GAME }}
           ITCH_USER: ${{ env.ITCH_USER }}
@@ -108,7 +112,7 @@ jobs:
       - name: Deploy macOS build
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
-          BUTLER_CREDENTIALS: ${{ env.BUTLER_API_KEY }}
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
           CHANNEL: osx
           ITCH_GAME: ${{ env.ITCH_GAME }}
           ITCH_USER: ${{ env.ITCH_USER }}
@@ -116,7 +120,7 @@ jobs:
       - name: Deploy web build
         uses: josephbmanley/butler-publish-itchio-action@master
         env:
-          BUTLER_CREDENTIALS: ${{ env.BUTLER_API_KEY }}
+          BUTLER_CREDENTIALS: ${{ env.BUTLER_CREDENTIALS }}
           CHANNEL: html5
           ITCH_GAME: ${{ env.ITCH_GAME }}
           ITCH_USER: ${{ env.ITCH_USER }}
