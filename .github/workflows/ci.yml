@@ -1,6 +1,6 @@
 name: Export and Publish
 env:
-  BUTLER_CREDENTIALS: ${{ secrets.BUTLER_CREDENTIALS }}
+  BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
   ITCH_GAME: ${{ secrets.ITCH_GAME }}
   ITCH_USER: ${{ secrets.ITCH_USER }}
 on:
