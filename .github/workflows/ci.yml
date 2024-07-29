@@ -30,7 +30,7 @@ jobs:
       - name: Get Version
         id: get_version
         run: |
-          VERSION=$(grep "^## \[.*]" changelog.md | head -1 | sed -e 's/## \[//' | sed -e 's/\].*//')
+          VERSION=$(grep "^## \[.*]" ChangeLog.md | head -1 | sed -e 's/## \[//' | sed -e 's/\].*//')
           echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
       - name: Get ChangeLog
         id: get_changelog
